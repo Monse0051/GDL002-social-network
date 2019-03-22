@@ -1,21 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600" rel="stylesheet">
+  <title>Document</title>
 </head>
+
+
 <body>
-   <div class="container">
-    <input id = "txtEmail" type="email" placeholder="Email"> 
-    <input id = "txtPassword" type="password" placeholder= "Contraseña">
-    <button id = btnLogin class="btn-btn-action">Log in</button>
-    <button id = btnSignUp class="btn-btn-secondary">Sign up</button>
-    <button id = btnLogOut class="btn-btn-action-hide">Log out</button> 
-   </div>
-   <script src= "app.js"></script>
+
+  <div class="cosa" title="nombreRed" alt="nombreRed">
+  </div>
+  <h1 title="nombreRed">codefem</h1>
+  <p class="texto" title="Descripción del sitio: comunidad de Mujeres Aprendices de Frontend">Comunidad de Mujeres
+    Aprendices de Frontend & Más...</p>
+  <div class="flow">
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+  </div>
+  <footer class="footer">
+    <h5>Desarrollado por <a target="_blank" href="https://www.facebook.com/lexavilex">@MásDudas</a></h5>
+    <boton class="copyright" title="Copyright © 2019">©</boton>
+
+    <div id="id01" class="modal-content animate">
+      <!-- <form class="modal-content animate"> -->
+        <div class="imgcontainer">
+          <span onclick="document.getElementById('id01').style.display='none'" class="close"
+            title="Close Modal">&times;</span>
+          <img src="assets/logo-codefem.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+          <label for="uname"><b>Usuaria(o):</b></label><br>
+          <input id="txtEmail" type="text" placeholder="Email" name="uname" required><br>
+          <label for="psw"><b>Contraseña</b></label><br>
+          <input id="txtPassword" type="password" placeholder="Introduce tu contraseña" name="psw" required><br>
+          <button id=btnLogin class="btn-login-box" type="submit">Entrar</button>
+          <p>ó</p>
+          <button id=btnSignUp class="btn-login-box">Crear una cuenta</button>
+          <br>
+          <button id=btnLogOut class="btn-logout-box" type="submit">Cerrar sesión</button>
+          <br>
+          <label>
+            <input type="checkbox" checked="checked" name="remember">Recuerdame
+          </label>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+
+          <span class="psw"><a href="#">Lo olvidé</a></span>
+        </div>
+      <!-- </form> -->
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>

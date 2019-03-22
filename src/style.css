@@ -1,3 +1,319 @@
-#btnLogOut{
+
+@import url('https://fonts.googleapis.com/css?family=Over+the+Rainbow|Montserrat:100,200,300,400,500,600');
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 7px;
+  }
+  
+  /* Set a style for all buttons */
+  button {
+    
+background: rgba(56,218,255,1);
+background: -moz-linear-gradient(-45deg, rgba(56,218,255,1) 0%, rgba(36,177,251,1) 29%, rgba(0,106,245,1) 80%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(56,218,255,1)), color-stop(29%, rgba(36,177,251,1)), color-stop(80%, rgba(0,106,245,1)));
+background: -webkit-linear-gradient(-45deg, rgba(56,218,255,1) 0%, rgba(36,177,251,1) 29%, rgba(0,106,245,1) 80%);
+background: -o-linear-gradient(-45deg, rgba(56,218,255,1) 0%, rgba(36,177,251,1) 29%, rgba(0,106,245,1) 80%);
+background: -ms-linear-gradient(-45deg, rgba(56,218,255,1) 0%, rgba(36,177,251,1) 29%, rgba(0,106,245,1) 80%);
+background: linear-gradient(135deg, rgba(56,218,255,1) 0%, rgba(36,177,251,1) 29%, rgba(0,106,245,1) 80%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38daff', endColorstr='#006af5', GradientType=1 );
+
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5%;
+    font-size: 1em;
+    font-family: 'Dosis', sans-serif;
+
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Extra styles for the cancel button */
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #bd0451e0;
+  }
+
+  .btn-login-box {
+    max-width: 30%;
+    border-radius: 10px;
+  }
+
+  .btn-logout-box {
+    max-width: 30%;
+    border-radius: 10px;
     visibility: hidden;
+  }
+  
+  /* Center the image and position the close button */
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+  }
+  
+  img.avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+  
+  span.psw a{
+    /*! float: right; */
+    padding-top: 16px;
+    margin: auto;
+    color: #0f8fed;
+  }
+
+  span.psw a:hover {
+    color: #88cdff;
+  }
+ 
+
+
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+    font-family: 'Montserrat', sans-serif;
+    
+    border-radius: 10px;
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fff;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 35%; /* Could be more or less, depending on screen size */
+    display: none;
+  }
+  
+  /* The Close Button (x) */
+  .close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #8b8b8b;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #d289f5;
+    cursor: pointer;
+  }
+  
+  /* Add Zoom Animation */
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+  }
+    
+  @keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+  }
+  
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+  }
+  h2{
+  
+font-family: 'Montserrat', sans-serif;
+float: none;
+font-weight: 100;
+
+  }
+  #login-button{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 30px;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(3,3,3,.8);
+    overflow: hidden;
+    opacity: 0.4;
+    box-shadow: 10px 10px 30px #000;}
+
+
+
+
+    
+
+body{
+ background:url(https://img.wallpapersafari.com/desktop/1920/1080/11/90/bjSWiq.jpg);
+  background-size:cover;
+  background-position:center center;
+  background-attachment:fixed;
+  font-family: helvetica, arial;
+  text-align: center;
+  margin:0;
+  padding:0;
 }
+
+.cosa {
+  height: 100px;
+  width: 200px; 
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+  animation: animacion 1s infinite ease-in-out alternate;
+  top:50%;
+  left:15%;
+}
+
+@keyframes animacion {
+	100% {
+    transform: translateY(30px);
+    box-shadow: 0 40px 10px -18px hsla(0,0%,0%,.2),
+  }
+}
+
+
+.texto{
+  color:#ffff;
+  font-size:30px;
+  margin: 2% auto;
+  text-align:center;
+  font-family: 'Montserrat', sans-serif;
+  /*! text-shadow: 1px 2px 1px rgba(5, 5, 5, 0.4); */ /* Sombraaaa */
+  font-weight: 200;
+}
+
+h1{
+  font-family:'Over the Rainbow';
+  font-size:6em;
+  text-align:center;
+  color: #38daff;
+  margin: 2% auto;
+  text-shadow: #5808f8 0 0 1px, #cb65f9 0 -1px 2px, #f2c8ff 0 -0px 2px, rgba(33, 3, 57, 0.8) 0 30px 25px;  
+  /*! line-height: 5rem; */
+}
+
+h1:hover {
+  text-shadow: 2px 2px 20px #3f0125;
+  
+}
+
+/* Copyright */
+.flow boton {
+  border: none;
+  background: hsl(192, 15%, 84%); 
+  border-radius: 4px;
+  outline: none;
+  padding: 7px 10px;
+  color: #fff;
+  font-size: 12px;
+  box-shadow: 0 0 15px #000;
+}
+.flow boton:hover {
+  background: hsl(204, 8%, 76%);
+  transition: background .7s;
+}
+.flow boton:active {
+  background: hsl(204, 8%, 66%);
+}
+.flow .copyright {
+  border: none; 
+  background: hsla(59, 98%, 17%, 0.541);
+}
+.flow .copyright:hover {
+  background: #86888a
+}
+.flow .copyright:active {
+  background: hsl(6, 64%, 36%)
+}
+
+
+/* Footer developed  */
+
+
+.footer {
+  display: block;
+  max-width: 400px;
+  font-family: helvetica, arial sans-serif;
+  text-align: center;
+  padding: 0;
+  font-size: .9em;
+  color: #929292;
+  /*! text-shadow: 0 1px 0 rgba(0, 0, 0, 0.9); */
+  border-radius: 2%;
+}
+.footer p a,
+.footer a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-weight: 700;
+}
+.footer p a:hover,
+.footer a:hover,
+.footer p a:active,
+.footer a:active {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+footer {
+  max-width: 175px;
+  margin: 0 auto;
+  display: block;
+  padding: 2em;
+  width: 100%;
+}
+
+
+@media only screen and (max-width: 1200px) {
+
+.modal-content {
+  width: 90%;
+}
+
+  }
