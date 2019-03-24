@@ -14,8 +14,9 @@ function initApp(config) {
   const btnSignUp = document.getElementById("btnSignUp");;
   const btnLogOut = document.getElementById("btnLogOut");
 
+  let errorDiv = document.getElementById("error");
   // add login Event
-  btnLogin.addEventListener("click", function (event) {
+  btnLogin.addEventListener("click", event => {
     // Get email and password
     console.log("DEBUG_MSG: login event");
     const email = txtEmail.value;
@@ -23,7 +24,26 @@ function initApp(config) {
     const auth = firebase.auth();
     // sign in
     const promise = auth.signInWithEmailAndPassword(email, pass);
-    promise.catch(event => console.log(event.message));
+    promise.then( ()=> {
+      errorDiv.style.display = "none";
+    }).catch(error => {
+      let errorCode = error.code;
+      
+      errorDiv.style.display = "block";
+      switch (errorCode){
+        case "auth/invalid-email":
+          errorDiv.innerHTML = "Correo Electrónico invalido";
+          break;
+        case "auth/user-not-found":
+          errorDiv.innerHTML = "Correo Electrónico no registrado";
+          break;
+        case "auth/wrong-password":
+          errorDiv.innerHTML = "Constraseña incorrecta";
+          break;  
+        default:
+      }
+      console.log(error.message);
+    });
   });
 
   // add sign up event
@@ -36,7 +56,26 @@ function initApp(config) {
     const auth = firebase.auth();
     // sign in
     const promise = auth.createUserWithEmailAndPassword(email, pass);
-    promise.catch(e => console.log(e.message));
+    promise.then( ()=> {
+      errorDiv.style.display = "none";
+    }).catch(error => {
+      let errorCode = error.code;
+      
+      errorDiv.style.display = "block";
+      switch (errorCode){
+        case "auth/email-already-in-use":
+          errorDiv.innerHTML = "Correo Electrónico en uso";
+          break;
+        case "auth/invalid-email":
+          errorDiv.innerHTML = "Correo Electrónico incorrecto";
+          break;
+        case "auth/weak-password":
+          errorDiv.innerHTML = "La contraseña debe tener al menos 6 caracteres";
+          break;  
+        default:
+      }
+      console.log(error.message);
+    });
   });
 
   // add log out event listener
@@ -63,10 +102,3 @@ function initApp(config) {
 
 initApp(config);
 
-// window.addEventListener("click", function (event) {
-//   let modal = document.getElementById('id01');
-//   if (event.target === modal ) {
-//     modal.style.display = "none";
-//   }
-  
-// });
