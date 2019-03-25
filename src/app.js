@@ -32,13 +32,13 @@ function initApp(config) {
       errorDiv.style.display = "block";
       switch (errorCode){
         case "auth/invalid-email":
-          errorDiv.innerHTML = "Correo Electrónico invalido";
+          errorDiv.innerHTML = "Correo Electrónico inválido";
           break;
         case "auth/user-not-found":
           errorDiv.innerHTML = "Correo Electrónico no registrado";
           break;
         case "auth/wrong-password":
-          errorDiv.innerHTML = "Constraseña incorrecta";
+          errorDiv.innerHTML = "Contraseña incorrecta";
           break;  
         default:
       }
@@ -64,10 +64,10 @@ function initApp(config) {
       errorDiv.style.display = "block";
       switch (errorCode){
         case "auth/email-already-in-use":
-          errorDiv.innerHTML = "Correo Electrónico en uso";
+          errorDiv.innerHTML = "Este correo eléctrónico ya está registrado, intenta con otro";
           break;
         case "auth/invalid-email":
-          errorDiv.innerHTML = "Correo Electrónico incorrecto";
+          errorDiv.innerHTML = "Correo Electrónico inválido";
           break;
         case "auth/weak-password":
           errorDiv.innerHTML = "La contraseña debe tener al menos 6 caracteres";
