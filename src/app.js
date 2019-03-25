@@ -2,19 +2,22 @@
  * Initializes Social Network application
  * @param {Object} config configuration data from firebase
  */
-function initApp(config) {
-  // Initialize Firebase
+// Initialize Firebase
   
-  firebase.initializeApp(config);
+firebase.initializeApp(config);
 
-  // Get elements
-  const txtEmail = document.getElementById("txtEmail");
-  const txtPassword = document.getElementById("txtPassword");
-  const btnLogin = document.getElementById("btnLogin");
-  const btnSignUp = document.getElementById("btnSignUp");;
-  const btnLogOut = document.getElementById("btnLogOut");
+// Get elements
+const txtEmail = document.getElementById("txtEmail");
+const txtPassword = document.getElementById("txtPassword");
+const btnLogin = document.getElementById("btnLogin");
+const btnSignUp = document.getElementById("btnSignUp");
+const btnLogOut = document.getElementById("btnLogOut");
 
-  let errorDiv = document.getElementById("error");
+let errorDiv = document.getElementById("error");
+
+
+function initApp(config) {
+
   // add login Event
   btnLogin.addEventListener("click", event => {
     // Get email and password
