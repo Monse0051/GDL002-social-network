@@ -8,6 +8,8 @@ const btnLogin = document.getElementById("btnLogin");
 const btnSignUp = document.getElementById("btnSignUp");
 const btnLogOut = document.getElementById("btnLogOut");
 
+const contentDiv = document.getElementById("content");
+
 let errorDiv = document.getElementById("error");
 
 /**
