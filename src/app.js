@@ -1,5 +1,5 @@
-const contentDiv = document.getElementById("content"); //llamar el div para inyectar contenido antes que todo
-window.onload = handleSignedOutUser(); // cargar el contenido de la pantalla "login" al iniciar la ventana
+const contentDiv = document.getElementById("content"); 
+window.onload = handleSignedOutUser();
 
 firebase.initializeApp(config);
 
