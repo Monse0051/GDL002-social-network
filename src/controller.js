@@ -17,6 +17,8 @@ function handleSignedInUser(firebaseUser) {
             <a href="">Salir<img src=""></a>
         </nav>
 
+        <div id="user-info"></div>
+
         <article id="create-post" class="create-post">
             <h2>Crear Publicación:</h2>
             <input id="input-post" type="text" placeholder="¿Qué quieres compartir con la comunidad?">
@@ -48,5 +50,9 @@ function handleSignedInUser(firebaseUser) {
         </article>
     </section>
     `;
+    const userInfo = document.getElementById('user-info');
+    userInfo.innerHTML =    `ID de usuario: ${firebaseUser.uid}<br>
+                            Email: ${firebaseUser.email}<br>
+                            Nombre: ${firebaseUser.displayName}`;
 }
 
