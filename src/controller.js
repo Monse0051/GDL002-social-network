@@ -12,6 +12,9 @@ function handleSignedOutUser() {
     `;    
 }
 
+//pienso que se puede crear una función pura que maneje estas dos
+// también sugiero cambairles el nombre
+
 function handleSignedInUser(firebaseUser) {
     location.hash = "#timeline";
     contentDiv.innerHTML = 
