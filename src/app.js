@@ -1,3 +1,5 @@
+const contentDiv = document.getElementById("content"); //llamar el div para inyectar contenido antes que todo
+window.onload = handleSignedOutUser(); // cargar el contenido de la pantalla "login" al iniciar la ventana
 
 firebase.initializeApp(config);
 
@@ -8,7 +10,7 @@ const btnLogin = document.getElementById("btnLogin");
 const btnSignUp = document.getElementById("btnSignUp");
 const btnLogOut = document.getElementById("btnLogOut");
 
-const contentDiv = document.getElementById("content");
+
 
 let errorDiv = document.getElementById("error");
 
@@ -81,7 +83,7 @@ btnSignUp.addEventListener("click", function(event){
 });
 
 
-  // add log out event listener
+  // add log out event listeneri
   btnLogOut.addEventListener("click", event => {
     firebase.auth().signOut();
   });
@@ -111,5 +113,5 @@ firebase.auth().onAuthStateChanged( function(firebaseUser) {
 
 // Navigate whenever the fragment identifier value changes.
 //TODO
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
+// window.addEventListener("hashchange", router);
+// window.addEventListener("load", router);
