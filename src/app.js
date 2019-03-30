@@ -83,9 +83,12 @@ btnSignUp.addEventListener("click", function(event){
 });
 
 
-  // add log out event listeneri
+  // add log out event listener
+  // logs out the user and refreshes window to #login
   btnLogOut.addEventListener("click", event => {
     firebase.auth().signOut();
+    location.reload();
+
   });
 
 
