@@ -9,10 +9,6 @@ console.log(`Hi Firestore is here!`);
 let db = firebase.firestore();
 
 
-
-
-
-
 //Add Data to FIRESTORE 
 //   db.collection("users").add({ //creates COLLECTION "users" then adds DOCUMENT
 //     first: "Claudia",
