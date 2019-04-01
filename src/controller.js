@@ -1,5 +1,6 @@
-
-
+const pathToWindow = (path) => {
+    location.hash = `${path}`;
+}
 
 const handleSignedOutUser = () => {
     location.hash = "#login";
@@ -12,7 +13,7 @@ const handleSignedOutUser = () => {
 // también sugiero cambairles el nombre
 
 const handleSignedInUser = (firebaseUser) => {
-    location.hash = "#timeline";
+    //location.hash = "#timeline";
     contentDiv.innerHTML = 
     `<section class = "timeline-screen">
         <nav id = "timeline-nav" class= "timeline-nav flex-row">
