@@ -64,6 +64,9 @@ function authEvent(email, password, auth, authEvent, errorSection) {
   promise.then( function(){
     console.log("DEBUG_MSG auth event");
     errorSection.style.display = "none";
+    if (authEvent === "createuser") {
+      createUser(email);
+    }
   }).catch(function (error) {
     errorSection.style.display = "block";
 
@@ -111,5 +114,5 @@ firebase.auth().onAuthStateChanged( function(firebaseUser) {
 
 // Navigate whenever the fragment identifier value changes.
 //TODO
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
+//window.addEventListener("hashchange", router);
+//window.addEventListener("load", router);
