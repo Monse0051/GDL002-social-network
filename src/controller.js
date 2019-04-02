@@ -101,3 +101,9 @@ const CreatePost = (mail, textval, isPublic) => {
         date : "01/04/2019"
     };
 }
+
+const createUser = (email) => {
+    let db = firebase.firestore();
+    let usersRef = db.collection(USERS_COLLECTION);
+    usersRef.doc(`user_${email}`).set({email: email});
+}
