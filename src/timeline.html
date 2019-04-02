@@ -9,24 +9,26 @@
 </head>
 <body>
    <section class = "timeline-screen">
-    <nav id = "timeline-nav" class= "timeline-nav flex-row">
-        <h1>madame{code}</h1>
-        <a href="">Salir<img src=""></a>
-    </nav>
+        <nav id = "timeline-nav" class= "timeline-nav flex-row">
+            <h1>madame{code}</h1>
+            <a href="">Salir<img src=""></a>
+        </nav>
 
-    <article id="create-post" class="create-post">
-        <h2>Crear Publicación:</h2>
-        <input id="input-post" type="text" placeholder="¿Qué quieres compartir con la comunidad?">
-        <p>Visible para:</p>
-        <input type="radio" name="public" value="public"> Público
-        <input type="radio" name="friends" value="friends"> Sólo Amigos
-        <br>
-        <button>Publicar</button>
-    </article>
+        <article id="create-post" class="create-post">
+            <h2>Crear Publicación:</h2>
+            <input id="input-post" type="text" placeholder="¿Qué quieres compartir con la comunidad?">
+            <p>Visible para:</p>
+            <input type="radio" name="public" value="public"> Público
+            <input type="radio" name="friends" value="friends"> Sólo Amigos
+            <br>
+            <button>Publicar</button>
+        </article>
+   </section>
 
-    <h2>Publicaciones recientes:</h2>
+    
 
     <section id="all-posts">
+        <h2>Publicaciones recientes:</h2>
         <article id="display-posts">
             <div id ="own-post">
                 <p id="user-email"><span class="strong">micorreo@es.com</span> compartió:</p><button id="edit-post">Edit</button>
@@ -43,7 +45,7 @@
                     <button id="like-post">like</button>
             </div>
         </article>
-    <!-- </section>
+     </section>
         <input id = "txtEmail" type="email" placeholder="Email"> 
         <input id = "txtPassword" type="password" placeholder= "Contraseña">
         <button id = btnLogin class="btn-btn-action">Iniciar sesión</button>

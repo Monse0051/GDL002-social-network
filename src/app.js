@@ -1,3 +1,5 @@
+const contentDiv = document.getElementById("content"); 
+window.onload = pathToWindow('#login');
 
 firebase.initializeApp(config);
 
@@ -8,7 +10,7 @@ const btnLogin = document.getElementById("btnLogin");
 const btnSignUp = document.getElementById("btnSignUp");
 const btnLogOut = document.getElementById("btnLogOut");
 
-const contentDiv = document.getElementById("content");
+
 
 let errorDiv = document.getElementById("error");
 
@@ -59,16 +61,19 @@ function authEvent(email, password, auth, authEvent, errorSection) {
   }
   else if (authEvent === "createuser") {
     promise = auth.createUserWithEmailAndPassword(email, password);
+    //createUser();
   }
 
   promise.then( function(){
-    console.log("DEBUG_MSG auth event");
+    //console.log("DEBUG_MSG auth event");
     errorSection.style.display = "none";
+    if (authEvent === "createuser") {
+      createUser(email);
+    }
   }).catch(function (error) {
     errorSection.style.display = "block";
-
     errorSection.innerHTML = codeMessageMapper(error.code);
-    console.log(error.message);
+    //console.log(error.message);
   });
 }
 
@@ -82,8 +87,11 @@ btnSignUp.addEventListener("click", function(event){
 
 
   // add log out event listener
+  // logs out the user and refreshes window to #login
   btnLogOut.addEventListener("click", event => {
     firebase.auth().signOut();
+    location.reload();
+
   });
 
 
@@ -99,6 +107,7 @@ firebase.auth().onAuthStateChanged( function(firebaseUser) {
   if (firebaseUser) {
     console.log(firebaseUser);
     btnLogOut.style.visibility = "visible";
+    pathToWindow('#timeline')
     handleSignedInUser(firebaseUser);
   } else {
     console.log("not logged in");
@@ -111,5 +120,5 @@ firebase.auth().onAuthStateChanged( function(firebaseUser) {
 
 // Navigate whenever the fragment identifier value changes.
 //TODO
-window.addEventListener("hashchange", router);
-window.addEventListener("load", router);
+// window.addEventListener("hashchange", router);
+// window.addEventListener("load", router);

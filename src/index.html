@@ -4,29 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="assets/madamecodefavicon.png">
     <link rel = "stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-   <section class = "login-screen">
-    <article id = "error"></article>
-    <input id = "txtEmail" type="email" placeholder="Email"> 
-    <input id = "txtPassword" type="password" placeholder= "Contraseña">
-    <button id = btnLogin class="btn-btn-action">Iniciar sesión</button>
-    <button id = btnSignUp class="btn-btn-secondary">Crear Cuenta</button>
-    <button id = btnLogOut class="btn-btn-action-hide">Cerrar Sesión</button> 
-   </section>
 
-  <br>
-   <div id="content"></div>
+  <button id = btnLogOut class="btn-btn-action-hide">Cerrar Sesión</button>
+   <div id="content">
+
+    <section class = "login-screen">
+      <article id = "error"></article>
+      <input id = "txtEmail" type="email" placeholder="Email"> 
+      <input id = "txtPassword" type="password" placeholder= "Contraseña">
+      <button id = btnLogin class="btn-btnb-action">Iniciar sesión</button>
+      <button id = btnSignUp class="btn-btn-secondary">Crear Cuenta</button>
+    </section>
+
+   </div>
+   
+     
 
   <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
   <script src = "config/config.js"></script>
   <script src = "view.js"></script> 
   <script src = "model.js"></script>
   <script src = "controller.js"></script> 
-  
   <script src = "app.js"></script>
+  <script src = "firestore-manage.js"></script>
   
 </body>
 </html>
