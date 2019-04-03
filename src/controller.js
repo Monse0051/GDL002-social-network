@@ -4,15 +4,29 @@
 const USERS_COLLECTION = "users_tests_monse";
 
 
+
 function CreatePost(mail, textval, isPublic) {
     //TODO make a function to return current date
+
+    const getdate=()=> {
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
+        today = dd + '/' + mm + '/' + yyyy;
+        return today;
+    };
+
+    let date = getdate();
+    
     return {
         email:mail,
         text: textval,
         is_public: isPublic,
-        date : "30/03/2019"
+        date : `${date}`
     };
 }
+
 
 function handleSignedInUser(firebaseUser) {
     location.hash = "#timeline";
