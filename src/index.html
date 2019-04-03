@@ -8,17 +8,18 @@
     <title>Document</title>
 </head>
 <body>
-   <section class = "login-screen">
+  <button id = btnLogOut class="btn-btn-action-hide">Cerrar Sesión</button>
+   <div id="content">
+     <section class = "login-screen">
     <article id = "error"></article>
     <input id = "txtEmail" type="email" placeholder="Email"> 
     <input id = "txtPassword" type="password" placeholder= "Contraseña">
     <button id = btnLogin class="btn-btn-action">Iniciar sesión</button>
     <button id = btnSignUp class="btn-btn-secondary">Crear Cuenta</button>
-    <button id = btnLogOut class="btn-btn-action-hide">Cerrar Sesión</button> 
+     
    </section>
 
-  <br>
-   <div id="content"></div>
+  <br></div>
 
   <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
   <script src = "config/config.js"></script>

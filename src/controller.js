@@ -23,13 +23,19 @@ function handleSignedInUser(firebaseUser) {
     contentDiv.innerHTML = timeLineTemplate;
 
     let db = firebase.firestore();
-    
+    let testDb= document.getElementById("test-db");
     document.getElementById("button-post").addEventListener("click", function () {
         let post = document.getElementById("input-post").value;
         if (post.length >0) {
             //TODO: extract if post is public or not from radio box
             
-            db.collection(`${USERS_COLLECTION}/user_${userEmail}/myPosts/`).add(CreatePost(userEmail, post, true));
+            db.collection(`${USERS_COLLECTION}/user_${userEmail}/myPosts/`).add(CreatePost(userEmail, post, true))
+            .then (function (docRef){
+                testDb.innerHTML= docRef.id })
+                // .cath (function (error){
+                //     console.error ("Error del post:", error.code);
+                    
+                // });
         }
         else{
             // TODO show message that post is empty

@@ -25,6 +25,9 @@ function timelineTemplate() {
             </div>
         </article>
   
-    `;
+    </section>
+    <div id= "test-db"></div>
+    </section>`
+    ;
     
 };

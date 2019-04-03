@@ -87,6 +87,7 @@ btnSignUp.addEventListener("click", function(event){
   // add log out event listener
   btnLogOut.addEventListener("click", event => {
     firebase.auth().signOut();
+    location.reload();
   });
 
 
@@ -113,6 +114,6 @@ firebase.auth().onAuthStateChanged( function(firebaseUser) {
 
 
 // Navigate whenever the fragment identifier value changes.
-//TODO
-//window.addEventListener("hashchange", router);
-//window.addEventListener("load", router);
+// TODO
+window.addEventListener("hashchange", router);
+window.addEventListener("load", router);
