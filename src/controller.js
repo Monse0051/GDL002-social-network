@@ -1,3 +1,4 @@
+
 //import { timeLineTemplate } from './templates/timelineTemplate';
 
 const USERS_COLLECTION = "users_tests_monse";
@@ -49,7 +50,7 @@ function handleSignedOutUser() {
 }
 
 function createUser(email) {
-    let db = firebase.firestore();
+let db = firebase.firestore();
     let usersRef = db.collection(USERS_COLLECTION);
     usersRef.doc(`user_${email}`).set({email: email});
 }
