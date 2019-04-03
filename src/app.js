@@ -1,6 +1,4 @@
 const contentDiv = document.getElementById("content"); 
-window.onload = pathToWindow('#login');
-
 firebase.initializeApp(config);
 
 // Get elements
@@ -61,7 +59,7 @@ function authEvent(email, password, auth, authEvent, errorSection) {
   }
   else if (authEvent === "createuser") {
     promise = auth.createUserWithEmailAndPassword(email, password);
-    //createUser();
+   
   }
 
   promise.then( function(){
@@ -106,8 +104,7 @@ firebase.auth().onAuthStateChanged( function(firebaseUser) {
   if (firebaseUser) {
     console.log(firebaseUser);
     btnLogOut.style.visibility = "visible";
-    pathToWindow('#timeline')
-    handleSignedInUser(firebaseUser);
+        handleSignedInUser(firebaseUser);
   } else {
     console.log("not logged in");
     btnLogOut.style.visibility = "hidden";
@@ -127,6 +124,7 @@ const googleSignin = () => {
  // The signed-in user info.
  var user = result.user;
  // ...
+ createUser(email);
 }).catch(function(error) {
  // Handle Errors here.
  var errorCode = error.code;
