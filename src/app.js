@@ -130,7 +130,7 @@ const googleSignin = () => {
  var user = result.user;
 
  //FIXME what happens if user already exist
- createUser(user.email);
+ //createUser(user.email);
 }).catch(function(error) {
  // Handle Errors here.
  var errorCode = error.code;
