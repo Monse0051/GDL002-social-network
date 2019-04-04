@@ -106,7 +106,7 @@ firebase.auth().onAuthStateChanged( function(firebaseUser) {
   console.log("DEBUG_MSG: auth state change event");
   
   if (firebaseUser) {
-    console.log(firebaseUser);
+    //console.log(firebaseUser);
     btnLogOut.style.visibility = "visible";
         handleSignedInUser(firebaseUser);
   } else {
