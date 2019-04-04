@@ -103,7 +103,7 @@ btnSignUp.addEventListener("click", function(event){
  */
 firebase.auth().onAuthStateChanged( function(firebaseUser) {
   // TODO create functions handleSignedInUser and handleSignedOutUser
-  console.log("DEBUG_MSG: auth state change event");
+  //console.log("DEBUG_MSG: auth state change event");
   
   if (firebaseUser) {
     //console.log(firebaseUser);
@@ -125,7 +125,7 @@ let provider = new firebase.auth.GoogleAuthProvider();
 const googleSignin = () => {
  firebase.auth().signInWithRedirect(provider).then(function(result) {
  // This gives you a Google Access Token. You can use it to access the Google API.
- var token = result.credential.accessToken;
+ var token = result.credential.accessTokzen;
  // The signed-in user info.
  var user = result.user;
 
