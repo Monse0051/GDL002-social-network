@@ -13,6 +13,7 @@ function timelineTemplate() {
         <input type="radio" name="visibility" value="friends"> Sólo Amigos
         <br>
         <button id="button-post">Publicar</button>
+        <div id="post-error" class="red-text"></div>
     </article>
 
     <h2>Publicaciones recientes:</h2>

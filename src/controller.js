@@ -67,6 +67,7 @@ function handleSignedInUser(firebaseUser) {
     let testDb= document.getElementById("all-posts");
     document.getElementById("button-post").addEventListener("click", function () {
         let postText = document.getElementById("input-post").value;
+        let postError = document.getElementById("post-error");
         if (postText.length >0) {
             //TODO: extract if post is public or not from radio box
             const post = CreatePost(userEmail, postText, true);
@@ -80,6 +81,9 @@ function handleSignedInUser(firebaseUser) {
             });
         }
         else{
+            if (postText == "") {
+                postError.innerHTML = "La publicación no puede estar vacía."
+            }
             // TODO show message that post is empty
         }
     });
