@@ -24,7 +24,8 @@ function CreatePost(mail, textval, isPublic) {
         email:mail,
         text: textval,
         is_public: isPublic,
-        date : `${date}`
+        date : `${date}`,
+        likes: 0
     };
 }
 
