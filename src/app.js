@@ -1,4 +1,8 @@
+//startup login template
 const contentDiv = document.getElementById("content"); 
+
+contentDiv.innerHTML = loginTemplate();
+
 firebase.initializeApp(config);
 
 // Get elements
@@ -115,6 +119,7 @@ firebase.auth().onAuthStateChanged( function(firebaseUser) {
 const signInGoogleBtn = document.getElementById('sign-in-google');
 // Set GOOGLE as provider
 let provider = new firebase.auth.GoogleAuthProvider();
+//let provider = new firebase.auth.FacebookAuthProvider();
 
 //Get GOOGLE ACCOUNT Authentication FIREBASE DOCUMENTATION
 const googleSignin = () => {
@@ -123,8 +128,9 @@ const googleSignin = () => {
  var token = result.credential.accessToken;
  // The signed-in user info.
  var user = result.user;
- // ...
- createUser(email);
+
+ //FIXME what happens if user already exist
+ createUser(user.email);
 }).catch(function(error) {
  // Handle Errors here.
  var errorCode = error.code;
@@ -133,9 +139,9 @@ const googleSignin = () => {
  var email = error.email;
  // The firebase.auth.AuthCredential type that was used.
  var credential = error.credential;
- // ...
+ console.log("DEBUG_MSG: error code = " + errorCode);
 });
-}
+};
 
 signInGoogleBtn.addEventListener("click", googleSignin );
 

@@ -17,16 +17,9 @@ function timelineTemplate() {
 
     <h2>Publicaciones recientes:</h2>
 
-    <section id="all-posts">
-        <article id="display-posts">
-            <div id ="own-post"> Mis publicaciones
-            </div>
-            <div id ="other-post"> Publicaciones de otros
-            </div>
-        </article>
-  
+    <section id="all-posts">   
     </section>
-    <div id= "test-db"></div>
+
     </section>`
     ;
     
