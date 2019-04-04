@@ -8,9 +8,12 @@ function timelineTemplate() {
     <article id="create-post" class="create-post">
         <h2>Crear Publicación:</h2>
         <input id="input-post" type="text" placeholder="¿Qué quieres compartir con la comunidad?">
-        <p>Visible para:</p>
-        <input type="radio" name="visibility" value="public"> Público
-        <input type="radio" name="visibility" value="friends"> Sólo Amigos
+        <br>
+        <label>Selecciona visibilidad:</label>
+        <select id = "select-visibility"> 
+                <option value="friends">Sólo Amigos</option>
+                <option value="public">Pública</option>
+        </select>
         <br>
         <button id="button-post">Publicar</button>
         <div id="post-error" class="red-text"></div>
