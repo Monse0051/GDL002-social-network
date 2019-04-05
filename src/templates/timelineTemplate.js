@@ -2,10 +2,11 @@ function timelineTemplate() {
     return ` <section class = "timeline-screen">
     <nav id = "timeline-nav" class= "timeline-nav flex-row">
         <h1>madame{code}</h1>
-        <a href="">Salir<img src=""></a>
+        <h3 id="logged-user"></h3>
+        <button id="sign-out-nav">Salir<img src=""></button>
     </nav>
 
-    <h3 id="logged-user"></h3>
+
     <article id="create-post" class="create-post">
         <h2>Crear Publicación:</h2>
         <input id="input-post" type="text" placeholder="¿Qué quieres compartir con la comunidad?">
