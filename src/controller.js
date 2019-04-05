@@ -1,14 +1,8 @@
-
-//import { timeLineTemplate } from './templates/timelineTemplate';
-
-const USERS_COLLECTION = "users_tests_monse";
-
-
+const USERS_COLLECTION = "users_posts";
 
 function CreatePost(mail, textval, isPublic) {
    
-    //Function to return current date
-
+    ////Function to return current date
     const getdate=()=> {
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
@@ -17,85 +11,85 @@ function CreatePost(mail, textval, isPublic) {
         today = dd + '/' + mm + '/' + yyyy;
         return today;
     };
-
     let date = getdate();
     
+    ////CREATES OBJECT for post
     return {
         email:mail,
         text: textval,
         is_public: isPublic,
-        date : `${date}`
-    };
+        date : `${date}`,
+        likes: 0
+        };
 }
 
 
 function handleSignedInUser(firebaseUser) {
     location.hash = "#timeline";
 
+    ////DECLARE and CALL Variables 
     let userEmail = firebaseUser.email; 
-    let db = firebase.firestore();
-
-    // modifies timeline
     contentDiv.innerHTML = timelineTemplate();
-    
-    db.collection(`${USERS_COLLECTION}/user_${userEmail}/myPosts/`).get().then( function (collect) {
-        let userPosts = collect.docs.map(function (p) {
-           return p.data(); 
-        });
-        let allPostSection = document.getElementById("all-posts");
-        allPostSection.innerHTML = "<div>";
+    let db = firebase.firestore();
+    let greetUser = document.getElementById('logged-user');
+    let signOutFromNav = document.getElementById('sign-out-nav');
+    let postsSection= document.getElementById("all-posts");
 
-        for (let index = 0; index < userPosts.length; index++) {
-            const postElement = userPosts[index];
+    greetUser.innerHTML = `¡Hola, ${userEmail}!`;
 
-            /**
-             * domPost = generatePostTempl(postText);
-             */
-
-            allPostSection.innerHTML += postElement.text + "<br></br>";
-        }
-        allPostSection.innerHTML += "</div>";
-
-     
-    }).catch(
-        function (error) {
-            console.log(error);
-        }
-    );
+    signOutFromNav.addEventListener("click", event => {
+        firebase.auth().signOut();
+        location.reload(true);
+    });
 
 
-    let testDb= document.getElementById("all-posts");
+    ////CREATES POST
     document.getElementById("button-post").addEventListener("click", function () {
+
         let postText = document.getElementById("input-post").value;
-        let postError = document.getElementById("post-error");
+        let postError = document.getElementById("post-error"); //section for error
+
         if (postText.length >0) {
-            //TODO: extract if post is public or not from radio box
             const post = CreatePost(userEmail, postText, true);
-            db.collection(`${USERS_COLLECTION}/user_${userEmail}/myPosts/`).add(post)
+
+            db.collection(`${USERS_COLLECTION}`).add(post)
             .then (function (docRef){
-                //testDb.innerHTML= docRef.id; 
-                testDb.innerHTML = post.text;
+                location.reload();
             }).catch (function (error){
                 console.error ("Error del post:", error.code);
-                    
             });
         }
         else{
             if (postText == "") {
                 postError.innerHTML = "La publicación no puede estar vacía."
             }
-            // TODO show message that post is empty
         }
     });
+    ////end of CREATES POST
+
+    //// SHOW POSTS FROM ALL USERS
+
+    let getCollection = db.collection(USERS_COLLECTION).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            postsSection.innerHTML += `<p>Fecha: ${doc.data().date}<br>
+                                <strong>${doc.data().email}</strong> compartió la publicación:
+                                <br><i>${doc.data().text}</i>
+                                <br><button id="add-like">Me gusta</button>
+                                <br>Likes:<span id= "likes-counter">${doc.data().likes}
+                                </p><br>`;
+            let likeBtn = document.getElementById("add-like");
+            
+            //console.log(likeAdd);
+            const addLike =() =>{
+                doc.data().likes = + 1;
+            };
+            likeBtn.addEventListener("click",addLike);
+        });
+    });
+    /////////// end of SHOW POST FROM ALL USERS ////////
 }
 
-
-function handleSignedOutUser() {
+const handleSignedOutUser = () => {
     location.hash = "#login";
-}
-
-function createUser(email) {
-let db = firebase.firestore();
-    let usersRef = db.collection(USERS_COLLECTION);
-    usersRef.doc(`user_${email}`).set({email: email});
 }
