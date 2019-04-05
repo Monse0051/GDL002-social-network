@@ -30,6 +30,7 @@ function CreatePost(mail, textval, isPublic) {
 }
 
 
+
 function handleSignedInUser(firebaseUser) {
     location.hash = "#timeline";
 
@@ -73,6 +74,9 @@ function handleSignedInUser(firebaseUser) {
 
     });
     /////////end of CREATES POST/////////////
+
+
+
     let allPostSection = document.getElementById("all-posts");
 
     let allPostTable = allPostSection.innerHTML = `<tbody id="posts-table"></tbody>`
@@ -85,7 +89,18 @@ function handleSignedInUser(firebaseUser) {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data());
-            testDb.innerHTML += `<p><strong>${doc.data().email}</strong> compartió la publicación:<br><i>${doc.data().text}</i></p><br>`
+            testDb.innerHTML += `<p><strong>${doc.data().email}</strong> compartió la publicación:
+                                <br><i>${doc.data().text}</i>
+                                <br><button id="add-like">Me gusta</button>
+                                <br>Likes:<span id= "likes-counter">${doc.data().likes}
+                                <br>ID: ${doc.id}</p><br>`;
+            let likeBtn = document.getElementById("add-like");
+            //console.log(likeAdd);
+            const addLike =() =>{
+                doc.data().likes = + 1;
+            };
+            likeBtn.addEventListener("click",addLike);
+
 
         });
     });

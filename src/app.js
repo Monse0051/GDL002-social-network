@@ -70,7 +70,7 @@ function authEvent(email, password, auth, authEvent, errorSection) {
     //console.log("DEBUG_MSG auth event");
     errorSection.style.display = "none";
     if (authEvent === "createuser") {
-      createUser(email);
+      //createUser(email);
     }
   }).catch(function (error) {
     errorSection.style.display = "block";
