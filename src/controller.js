@@ -1,9 +1,9 @@
 const USERS_COLLECTION = "users_posts";
 
-function CreatePost(mail, textval, isPublic) {
+function createPost(mail, textval, isPublic) {
    
     ////Function to return current date
-    const getdate=()=> {
+    const getDate=()=> {
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
         let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -11,15 +11,25 @@ function CreatePost(mail, textval, isPublic) {
         today = dd + '/' + mm + '/' + yyyy;
         return today;
     };
-    let date = getdate();
-    
+
+    let getTime = () => {
+        let today = new Date();
+        let time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+        return time;
+    };
+
+    let date = getDate();
+    let time = getTime();
+    console.log(time);
     ////CREATES OBJECT for post
     return {
         email:mail,
         text: textval,
         is_public: isPublic,
         date : `${date}`,
+        time : `${time}`,
         likes: 0
+
         };
 }
 
@@ -50,7 +60,7 @@ function handleSignedInUser(firebaseUser) {
         let postError = document.getElementById("post-error"); //section for error
 
         if (postText.length >0) {
-            const post = CreatePost(userEmail, postText, true);
+            const post = createPost(userEmail, postText, true);
 
             db.collection(`${USERS_COLLECTION}`).add(post)
             .then (function (docRef){
@@ -72,21 +82,33 @@ function handleSignedInUser(firebaseUser) {
     let getCollection = db.collection(USERS_COLLECTION).get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
-            postsSection.innerHTML += `<p>Fecha: ${doc.data().date}<br>
+
+            
+            if (userEmail == doc.data().email){
+                let postTemplateOwn = `<p class ="purple">Fecha: ${doc.data().date}<br>
                                 <strong>${doc.data().email}</strong> compartió la publicación:
                                 <br><i>${doc.data().text}</i>
                                 <br><button id="add-like">Me gusta</button>
                                 <br>Likes:<span id= "likes-counter">${doc.data().likes}
-                                </p><br>`;
-            let likeBtn = document.getElementById("add-like");
-            
-            //console.log(likeAdd);
-            const addLike =() =>{
-                doc.data().likes = + 1;
-            };
-            likeBtn.addEventListener("click",addLike);
+                                <br><button id = "edit-button">Editar</button>
+                                <br>
+                                `;
+                postsSection.innerHTML += postTemplateOwn;   
+           }
+            else {
+                let postTemplateOthers = `<p>Fecha: ${doc.data().date}<br>
+                                <strong>${doc.data().email}</strong> compartió la publicación:
+                                <br><i>${doc.data().text}</i>
+                                <br><button id="add-like">Me gusta</button>
+                                <br>Likes:<span id= "likes-counter">${doc.data().likes}
+                                <br>
+                                `;
+                postsSection.innerHTML += postTemplateOthers;
+            }
+
         });
     });
+
     /////////// end of SHOW POST FROM ALL USERS ////////
 }
 
