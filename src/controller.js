@@ -91,9 +91,13 @@ function handleSignedInUser(firebaseUser) {
                 dtaPost: postsData
             }
 
+
+
+
             if (userEmail == postsData.email){
+                let id = doc.id;
                 let postTemplateOwn = 
-                                `<div id = "own-post-1" class = "own-post">
+                                `<div id = "own-post-${postsId}" class = "own-post">
                                     <p class ="purple">Fecha: ${postsData.date} Hora: ${postsData.time}<br>
                                     <strong>${postsData.email}</strong> compartió la publicación:
                                     <br><i>${postsData.text}</i>
@@ -104,6 +108,7 @@ function handleSignedInUser(firebaseUser) {
                                     <br>
                                 </div>`;
                 postsSection.innerHTML += postTemplateOwn;
+
            }
 
             else {
@@ -117,12 +122,13 @@ function handleSignedInUser(firebaseUser) {
                 postsSection.innerHTML += postTemplateOthers;
             }
 
-            let ownPostDiv = document.getElementById("own-post-1");
+            let ownPostDiv = document.getElementById("own-post-${postsId}");
             let editBtn = ownPostDiv.querySelector('.edit-button');
-            let id = doc.id;
+            
 
             const editPost = (id) => {
                 console.log(doc.id)
+
                 let postText = doc.data().text;
                 ownPostDiv.innerHTML += `<div class = "edit-post-div"><input id = "edit-post-input" value="${postText}"></input>
                                         <br><button class = "save-edit-btn">guardar</button>
