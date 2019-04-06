@@ -96,6 +96,7 @@ function handleSignedInUser(firebaseUser) {
 
             if (userEmail == postsData.email){
                 let id = doc.id;
+
                 let postTemplateOwn = 
                                 `<div id = "own-post-${postsId}" class = "own-post">
                                     <p class ="purple">Fecha: ${postsData.date} Hora: ${postsData.time}<br>
@@ -103,11 +104,13 @@ function handleSignedInUser(firebaseUser) {
                                     <br><i>${postsData.text}</i>
                                     <br><button id="add-like">Me gusta</button>
                                     <br>Likes:<span id= "likes-counter">${postsData.likes}
-                                    <br><button class = "edit-button">Editar</button>
+                                    <br><button id = "edit-button" class = "edit-button">Editar</button>
                                     <br><button id = "delete-button" class = "">Eliminar post</button>
                                     <br>
                                 </div>`;
                 postsSection.innerHTML += postTemplateOwn;
+
+
            }
 
             else {
@@ -121,32 +124,63 @@ function handleSignedInUser(firebaseUser) {
                 postsSection.innerHTML += postTemplateOthers;
             }
 
+            // let ownPostDiv = document.getElementById(`own-post-${postsId}`);
+            
+            
+            // if (ownPostDiv) {
+
+            //     let editBtn = ownPostDiv.querySelector('.edit-button');
+            //     console.log(editBtn)
+            //     let id = doc.id;
+            //     console.log(id)
+
+            //     ownPostDiv.innerHTML += `<div class = "edit-post-div"><input id = "edit-post-input" value="${doc.data().text}"></input>
+            //                             <br><button class = "save-edit-btn">guardar</button>
+            //                             <br><button class = "cancel-edit-btn">cancelar</button>
+            //                             </div>`;
+
+            //     const editPost = (id) => {
+            //         console.log(id)
+            //     ownPostDiv.innerHTML += `<div class = "edit-post-div"><input id = "edit-post-input" value="${doc.data().text}"></input>
+            //                             <br><button class = "save-edit-btn">guardar</button>
+            //                             <br><button class = "cancel-edit-btn">cancelar</button>
+            //                             </div>`;
+            //     }
+
+            //     editBtn.addEventListener("click", editPost);
+            // }       
+
+        });
+
+            querySnapshot.forEach(function(doc) {
+            let postsData = doc.data();
+            let postsId = doc.id;
+
             let ownPostDiv = document.getElementById(`own-post-${postsId}`);
-            
-            
+
+
             if (ownPostDiv) {
 
                 let editBtn = ownPostDiv.querySelector('.edit-button');
-                console.log(editBtn)
-                let id = doc.id;
-                console.log(id)
+                console.log(ownPostDiv, doc.id);
+                // let id = doc.id;
 
-                const editPost = (id) => {
-                ownPostDiv.innerHTML += `<div class = "edit-post-div"><input id = "edit-post-input" value="${doc.data().text}"></input>
-                                        <br><button class = "save-edit-btn">guardar</button>
-                                        <br><button class = "cancel-edit-btn">cancelar</button>
+                const editPost = (event) => {
+                    alert(event);
+                    console.log(ownPostDiv, editBtn)
+
+                ownPostDiv.innerHTML += `<div class="edit-post-div"><input id="edit-post-input" value="${doc.data().text}" />
+                                        <br><button class="save-edit-btn">guardar</button>
+                                        <br><button class="cancel-edit-btn">cancelar</button>
                                         </div>`;
                 }
 
                 editBtn.addEventListener("click", editPost);
-            }       
-
-            
-            
-            
-
+            }
         });
     });
+
+
 
     //// end of SHOW POST FROM ALL USERS
 }
