@@ -40,3 +40,13 @@ p .strong {
 .red-text {
 	color:	#ff0000;
 }
+
+.purple {
+	color: #ab1795;
+}
+
+#edit-button {
+	background-color:  #ab1795;
+	color: #ffff;
+	padding: .5rem;
+}
