@@ -121,22 +121,24 @@ function handleSignedInUser(firebaseUser) {
                 postsSection.innerHTML += postTemplateOthers;
             }
 
-            let ownPostDiv = document.getElementById('own-post-${postsId}');
-            let editBtn = ownPostDiv.querySelector('.edit-button');
+            let ownPostDiv = document.getElementById(`own-post-${postsId}`);
+            
             
             if (ownPostDiv) {
-                const editPost = (id) => {
-                console.log(doc.id)
 
-                let postText = doc.data().text;
-                ownPostDiv.innerHTML += `<div class = "edit-post-div"><input id = "edit-post-input" value="${postText}"></input>
+                let editBtn = ownPostDiv.querySelector('.edit-button');
+                console.log(editBtn)
+                let id = doc.id;
+                console.log(id)
+
+                const editPost = (id) => {
+                ownPostDiv.innerHTML += `<div class = "edit-post-div"><input id = "edit-post-input" value="${doc.data().text}"></input>
                                         <br><button class = "save-edit-btn">guardar</button>
                                         <br><button class = "cancel-edit-btn">cancelar</button>
                                         </div>`;
                 }
 
-            editBtn.addEventListener("click", editPost)
-
+                editBtn.addEventListener("click", editPost);
             }       
 
             
