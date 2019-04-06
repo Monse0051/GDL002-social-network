@@ -3,7 +3,7 @@ const USERS_COLLECTION = "users_posts";
 function createPost(mail, textval, isPublic) {
    
     ////Function to return current date
-    const getdate=()=> {
+    const getDate=()=> {
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
         let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -11,15 +11,25 @@ function createPost(mail, textval, isPublic) {
         today = dd + '/' + mm + '/' + yyyy;
         return today;
     };
-    let date = getdate();
-    
+
+    let getTime = () => {
+        let today = new Date();
+        let time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+        return time;
+    };
+
+    let date = getDate();
+    let time = getTime();
+    console.log(time);
     ////CREATES OBJECT for post
     return {
         email:mail,
         text: textval,
         is_public: isPublic,
         date : `${date}`,
+        time : `${time}`,
         likes: 0
+
         };
 }
 
@@ -83,8 +93,8 @@ function handleSignedInUser(firebaseUser) {
                                 <br><button id = "edit-button">Editar</button>
                                 <br>
                                 `;
-                postsSection.innerHTML += postTemplateOwn;                
-            }
+                postsSection.innerHTML += postTemplateOwn;   
+           }
             else {
                 let postTemplateOthers = `<p>Fecha: ${doc.data().date}<br>
                                 <strong>${doc.data().email}</strong> compartió la publicación:
@@ -95,6 +105,7 @@ function handleSignedInUser(firebaseUser) {
                                 `;
                 postsSection.innerHTML += postTemplateOthers;
             }
+
         });
     });
 

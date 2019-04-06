@@ -4,6 +4,7 @@
 	-moz-box-sizing: border-box; 
 	box-sizing: border-box;
 	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 .flex-row {
@@ -46,7 +47,14 @@ p .strong {
 }
 
 #edit-button {
+
+	border: 2px solid #ab1795;
+	color: #ab1795;
+	padding: .5rem;
+	border-radius:.5rem;
+}
+
+#edit-button:hover {
 	background-color:  #ab1795;
 	color: #ffff;
-	padding: .5rem;
 }
