@@ -20,7 +20,7 @@ function createPost(mail, textval, isPublic) {
 
     let date = getDate();
     let time = getTime();
-    console.log(time);
+
     ////CREATES OBJECT for post
     return {
         email:mail,
@@ -81,35 +81,59 @@ function handleSignedInUser(firebaseUser) {
 
     let getCollection = db.collection(USERS_COLLECTION).get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
 
+            let postsData = doc.data();
+            let postsId = doc.id;
             
-            if (userEmail == doc.data().email){
-                let postTemplateOwn = `<p class ="purple">Fecha: ${doc.data().date}<br>
-                                <strong>${doc.data().email}</strong> compartió la publicación:
-                                <br><i>${doc.data().text}</i>
-                                <br><button id="add-like">Me gusta</button>
-                                <br>Likes:<span id= "likes-counter">${doc.data().likes}
-                                <br><button id = "edit-button">Editar</button>
-                                <br>
-                                `;
-                postsSection.innerHTML += postTemplateOwn;   
+
+            let idData = {
+                idPost : postsId,
+                dtaPost: postsData
+            }
+
+            if (userEmail == postsData.email){
+                let postTemplateOwn = 
+                                `<div id = "own-post">
+                                    <p class ="purple">Fecha: ${postsData.date} Hora: ${postsData.time}<br>
+                                    <strong>${postsData.email}</strong> compartió la publicación:
+                                    <br><i>${postsData.text}</i>
+                                    <br><button id="add-like">Me gusta</button>
+                                    <br>Likes:<span id= "likes-counter">${postsData.likes}
+                                    <br><button id = "edit-button" class = "purple-btn">Editar</button>
+                                    <br><button id = "delete-button" class = "purple-btn">Eliminar post</button>
+                                    <br>
+                                </div>`;
+                postsSection.innerHTML += postTemplateOwn;
            }
+
             else {
-                let postTemplateOthers = `<p>Fecha: ${doc.data().date}<br>
-                                <strong>${doc.data().email}</strong> compartió la publicación:
-                                <br><i>${doc.data().text}</i>
+                let postTemplateOthers = `<p>Fecha: ${postsData.date} Hora: ${postsData.time}<br>
+                                <strong>${postsData.email}</strong> compartió la publicación:
+                                <br><i>${postsData.text}</i>
                                 <br><button id="add-like">Me gusta</button>
-                                <br>Likes:<span id= "likes-counter">${doc.data().likes}
+                                <br>Likes:<span id= "likes-counter">${postsData.likes}
                                 <br>
                                 `;
                 postsSection.innerHTML += postTemplateOthers;
             }
 
+
+            let ownPostDiv = document.getElementById("own-post");
+            let editBtn = document.getElementById('edit-button');
+            let id = doc.id;
+
+            const editPost = (id) => {
+                console.log(doc.id)
+            }
+
+            editBtn.addEventListener("click", editPost)
+            
+            
+
         });
     });
 
-    /////////// end of SHOW POST FROM ALL USERS ////////
+    //// end of SHOW POST FROM ALL USERS
 }
 
 const handleSignedOutUser = () => {

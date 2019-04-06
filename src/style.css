@@ -46,7 +46,7 @@ p .strong {
 	color: #ab1795;
 }
 
-#edit-button {
+.purple-btn {
 
 	border: 2px solid #ab1795;
 	color: #ab1795;
@@ -54,7 +54,7 @@ p .strong {
 	border-radius:.5rem;
 }
 
-#edit-button:hover {
+.purple-btn:hover {
 	background-color:  #ab1795;
 	color: #ffff;
 }
