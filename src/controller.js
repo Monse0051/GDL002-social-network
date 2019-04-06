@@ -123,6 +123,11 @@ function handleSignedInUser(firebaseUser) {
 
             const editPost = (id) => {
                 console.log(doc.id)
+                let postText = doc.data().text;
+                ownPostDiv.innerHTML += `<div class = "edit-post-div"><input id = "edit-post-input" value="${postText}"></input>
+                                        <br><button class = "save-edit-btn">guardar</button>
+                                        <br><button class = "cancel-edit-btn">cancelar</button>
+                                        </div>`
             }
 
             editBtn.addEventListener("click", editPost)
