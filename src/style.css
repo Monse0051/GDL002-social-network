@@ -7,6 +7,10 @@
 	font-family: Helvetica, Arial, sans-serif;
 }
 
+.button-hide {
+	visibility: hidden;
+}
+
 .flex-row {
 	display: flex;
 	flex-direction: row;
