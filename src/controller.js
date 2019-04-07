@@ -82,11 +82,12 @@ function handleSignedInUser(firebaseUser) {
     db.collection(USERS_COLLECTION).get().then(function(querySnapshot) {
         
          //// SHOW POSTS FROM ALL USERS
-        querySnapshot.forEach(function(doc) {
+        querySnapshot.forEach( (doc) => {
 
             let postsData = doc.data();
             let postsId = doc.id;
-            
+            let id = doc.id;
+            let likes = doc.data().likes;
 
             let idData = {
                 idPost : postsId,
@@ -101,8 +102,8 @@ function handleSignedInUser(firebaseUser) {
                                     <p class ="purple">Fecha: ${postsData.date} Hora: ${postsData.time}<br>
                                     <strong>${postsData.email}</strong> compartió la publicación:
                                     <br><i>${postsData.text}</i>
-                                    <br><button id="add-like">Me gusta</button>
-                                    <br>Likes:<span id= "likes-counter">${postsData.likes}
+                                    <br><button class="btn-like" id="add-like_${id}">Me gusta</button>
+                                    <div>Likes:<span id= "likes-counter_${id}">${likes}</div>
                                     <br><button id = "edit-button" class = "edit-button">Editar</button>
                                     <br><button class = "delete-button" class = "">Eliminar post</button>
                                     <br>
@@ -116,14 +117,65 @@ function handleSignedInUser(firebaseUser) {
                 let postTemplateOthers = `<p>Fecha: ${postsData.date} Hora: ${postsData.time}<br>
                                 <strong>${postsData.email}</strong> compartió la publicación:
                                 <br><i>${postsData.text}</i>
-                                <br><button id="add-like">Me gusta</button>
-                                <br>Likes:<span id= "likes-counter">${postsData.likes}
+                                <br><button class="btn-like" id="add-like_${id}">Me gusta</button>
+                                <div>Likes:<span id= "likes-counter_${id}">${likes}</div>
                                 <br>
                                 `;
                 postsSection.innerHTML += postTemplateOthers;
             }
-        });  
+
+                    let buttonsLike = document.getElementsByClassName("btn-like");
+        let db = firebase.firestore();
+
+        for (let index = 0; index < buttonsLike.length; index++) {
+            const button = buttonsLike[index];
+            let id = button.id.slice("add-like_".length);
+
+            button.addEventListener("click", function () {
+                let postDocRef = db.collection(USERS_COLLECTION).doc(id);
+
+                db.runTransaction(function (transaction) {
+                    return transaction.get(postDocRef).then(function (post){
+                        //increasing likes by 1
+                        let likesCount = post.data().likes + 1;
+                        transaction.update(postDocRef, {likes: likesCount});
+                        return likesCount;
+                    });
+                }).then(function (likesCount) {
+                    document.getElementById(`likes-counter_${id}`).innerHTML = likesCount;
+                    console.log("likes = " + likesCount);
+                });
+
+            }); 
+        }
+ 
+       });  
         //// end of SHOW POST FROM ALL USERS
+        
+        //// add LIKE BUTTON
+        let buttonsLike = document.getElementsByClassName("btn-like");
+
+        for (let index = 0; index < buttonsLike.length; index++) {
+            const button = buttonsLike[index];
+            let id = button.id.slice("add-like_".length);
+
+            button.addEventListener("click", function () {
+                let postDocRef = db.collection(USERS_COLLECTION).doc(id);
+
+                db.runTransaction(function (transaction) {
+                    return transaction.get(postDocRef).then(function (post){
+                        //increasing likes by 1
+                        let likesCount = post.data().likes + 1 - 1;
+                        transaction.update(postDocRef, {likes: likesCount});
+                        return likesCount;
+                    });
+                }).then(function (likesCount) {
+                    document.getElementById(`likes-counter_${id}`).innerHTML = likesCount;
+                });
+
+            }); 
+        }
+
 
         ////// Edit POSTS
             querySnapshot.forEach(function(doc) {
