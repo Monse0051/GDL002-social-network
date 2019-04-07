@@ -1,27 +1,27 @@
 const USERS_COLLECTION = "users_posts";
 
+
+////Function to return current date
+const getDate=()=> {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    today = dd + '/' + mm + '/' + yyyy;
+    return today;
+};
+
+let getTime = () => {
+    let today = new Date();
+    let time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+    return time;
+};
+
+let date = getDate();
+let time = getTime();
+
 function createPost(mail, textval, isPublic) {
-   
-    ////Function to return current date
-    const getDate=()=> {
-        let today = new Date();
-        let dd = String(today.getDate()).padStart(2, '0');
-        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        let yyyy = today.getFullYear();
-        today = dd + '/' + mm + '/' + yyyy;
-        return today;
-    };
-
-    let getTime = () => {
-        let today = new Date();
-        let time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
-        return time;
-    };
-
-    let date = getDate();
-    let time = getTime();
-
-    ////CREATES OBJECT for post
+////CREATES OBJECT for post
     return {
         email:mail,
         text: textval,
@@ -77,9 +77,11 @@ function handleSignedInUser(firebaseUser) {
     });
     ////end of CREATES POST
 
-    //// SHOW POSTS FROM ALL USERS
-
-    let getCollection = db.collection(USERS_COLLECTION).get().then(function(querySnapshot) {
+   
+    ////ITERATE POSTS COLLECTION
+    db.collection(USERS_COLLECTION).get().then(function(querySnapshot) {
+        
+         //// SHOW POSTS FROM ALL USERS
         querySnapshot.forEach(function(doc) {
 
             let postsData = doc.data();
@@ -90,9 +92,6 @@ function handleSignedInUser(firebaseUser) {
                 idPost : postsId,
                 dtaPost: postsData
             }
-
-
-
 
             if (userEmail == postsData.email){
                 let id = doc.id;
@@ -123,35 +122,10 @@ function handleSignedInUser(firebaseUser) {
                                 `;
                 postsSection.innerHTML += postTemplateOthers;
             }
+        });  
+        //// end of SHOW POST FROM ALL USERS
 
-            // let ownPostDiv = document.getElementById(`own-post-${postsId}`);
-            
-            
-            // if (ownPostDiv) {
-
-            //     let editBtn = ownPostDiv.querySelector('.edit-button');
-            //     console.log(editBtn)
-            //     let id = doc.id;
-            //     console.log(id)
-
-            //     ownPostDiv.innerHTML += `<div class = "edit-post-div"><input id = "edit-post-input" value="${doc.data().text}"></input>
-            //                             <br><button class = "save-edit-btn">guardar</button>
-            //                             <br><button class = "cancel-edit-btn">cancelar</button>
-            //                             </div>`;
-
-            //     const editPost = (id) => {
-            //         console.log(id)
-            //     ownPostDiv.innerHTML += `<div class = "edit-post-div"><input id = "edit-post-input" value="${doc.data().text}"></input>
-            //                             <br><button class = "save-edit-btn">guardar</button>
-            //                             <br><button class = "cancel-edit-btn">cancelar</button>
-            //                             </div>`;
-            //     }
-
-            //     editBtn.addEventListener("click", editPost);
-            // }       
-
-        });
-
+        ////// Edit POSTS
             querySnapshot.forEach(function(doc) {
             let postsData = doc.data();
             let postsId = doc.id;
@@ -162,27 +136,55 @@ function handleSignedInUser(firebaseUser) {
             if (ownPostDiv) {
 
                 let editBtn = ownPostDiv.querySelector('.edit-button');
-                console.log(ownPostDiv, doc.id);
+                //console.log(ownPostDiv, doc.id);
                 // let id = doc.id;
 
                 const editPost = (event) => {
-                    alert(event);
-                    console.log(ownPostDiv, editBtn)
+                    //alert(event);
+                    //console.log(ownPostDiv, editBtn)
 
-                ownPostDiv.innerHTML += `<div class="edit-post-div"><input id="edit-post-input" value="${doc.data().text}" />
+                ownPostDiv.innerHTML += `<div class="edit-post-div">
+                                        <input class="edit-post-input"/>
                                         <br><button class="save-edit-btn">guardar</button>
                                         <br><button class="cancel-edit-btn">cancelar</button>
                                         </div>`;
+
+
+                document.querySelector('.edit-post-input').value = `${doc.data().text}`;
+                let saveEditBtn = document.querySelector('.save-edit-btn');
+                let cancelEditBtn = document.querySelector('.cancel-edit-btn');
+                console.log(postsId)
+
+                saveEditBtn.addEventListener("click",()=>{
+
+                    let editedText = document.querySelector('.edit-post-input').value;
+                    console.log(saveEditBtn);
+                    console.log(editedText);
+
+                    let editDoc = db.collection(USERS_COLLECTION).doc(postsId);
+                    console.log(editDoc);
+                    return editDoc.update({
+                        text: editedText
+                    })
+                    .then(function() {
+                        console.log("Document successfully updated!");
+                        location.reload();
+                    })
+                    .catch(function(error) {
+                        // The document probably doesn't exist.
+                        console.error("Error updating document: ", error);
+                    });
+                })
+
+                cancelEditBtn.addEventListener("click",()=>{location.reload()});
                 }
 
                 editBtn.addEventListener("click", editPost);
             }
         });
+        /////END OF Edit POSTS
     });
-
-
-
-    //// end of SHOW POST FROM ALL USERS
+    ////END OF ITERATE COLLECTION
 }
 
 const handleSignedOutUser = () => {
