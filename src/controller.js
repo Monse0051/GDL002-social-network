@@ -85,20 +85,14 @@ function handleSignedInUser(firebaseUser) {
         querySnapshot.forEach( (doc) => {
 
             let postsData = doc.data();
-            let postsId = doc.id;
             let id = doc.id;
             let likes = doc.data().likes;
-
-            let idData = {
-                idPost : postsId,
-                dtaPost: postsData
-            }
 
             if (userEmail == postsData.email){
                 let id = doc.id;
 
                 let postTemplateOwn = 
-                                `<div id = "own-post-${postsId}" class = "own-post">
+                                `<div id = "own-post-${id}" class = "own-post">
                                     <p class ="purple">Fecha: ${postsData.date} Hora: ${postsData.time}<br>
                                     <strong>${postsData.email}</strong> compartió la publicación:
                                     <br><i>${postsData.text}</i>
@@ -143,7 +137,6 @@ function handleSignedInUser(firebaseUser) {
                     });
                 }).then(function (likesCount) {
                     document.getElementById(`likes-counter_${id}`).innerHTML = likesCount;
-                    console.log("likes = " + likesCount);
                 });
 
             }); 
@@ -180,21 +173,18 @@ function handleSignedInUser(firebaseUser) {
         ////// Edit POSTS
             querySnapshot.forEach(function(doc) {
             let postsData = doc.data();
-            let postsId = doc.id;
+            let id = doc.id;
 
-            let ownPostDiv = document.getElementById(`own-post-${postsId}`);
+            let ownPostDiv = document.getElementById(`own-post-${id}`);
 
 
             if (ownPostDiv) {
 
                 let editBtn = ownPostDiv.querySelector('.edit-button');
                 let deleteBtn = ownPostDiv.querySelector('.delete-button');
-                //console.log(deleteBtn);
-                //console.log(ownPostDiv, doc.id);
-                // let id = doc.id;
 
                 const deletePost = () => {
-                    db.collection(USERS_COLLECTION).doc(postsId).delete().then(function() {
+                    db.collection(USERS_COLLECTION).doc(id).delete().then(function() {
                         console.log("Document successfully deleted!");
                         location.reload();
                     }).catch(function(error) {
@@ -205,9 +195,6 @@ function handleSignedInUser(firebaseUser) {
                 deleteBtn.addEventListener("click",deletePost);
 
                 const editPost = (event) => {
-                    //alert(event);
-                    //console.log(ownPostDiv, editBtn)
-
                 ownPostDiv.innerHTML += `<div class="edit-post-div">
                                         <input class="edit-post-input"/>
                                         <br><button class="save-edit-btn">guardar</button>
@@ -218,16 +205,12 @@ function handleSignedInUser(firebaseUser) {
                 document.querySelector('.edit-post-input').value = `${doc.data().text}`;
                 let saveEditBtn = document.querySelector('.save-edit-btn');
                 let cancelEditBtn = document.querySelector('.cancel-edit-btn');
-                console.log(postsId)
 
                 saveEditBtn.addEventListener("click",()=>{
 
                     let editedText = document.querySelector('.edit-post-input').value;
-                    console.log(saveEditBtn);
-                    console.log(editedText);
 
-                    let editDoc = db.collection(USERS_COLLECTION).doc(postsId);
-                    console.log(editDoc);
+                    let editDoc = db.collection(USERS_COLLECTION).doc(id);
                     return editDoc.update({
                         text: editedText
                     })

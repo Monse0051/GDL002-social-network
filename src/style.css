@@ -58,3 +58,6 @@ p .strong {
 	background-color:  #ab1795;
 	color: #ffff;
 }
+.hide {
+	display: none;
+}
