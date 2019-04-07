@@ -104,7 +104,7 @@ function handleSignedInUser(firebaseUser) {
                                     <br><button id="add-like">Me gusta</button>
                                     <br>Likes:<span id= "likes-counter">${postsData.likes}
                                     <br><button id = "edit-button" class = "edit-button">Editar</button>
-                                    <br><button id = "delete-button" class = "">Eliminar post</button>
+                                    <br><button class = "delete-button" class = "">Eliminar post</button>
                                     <br>
                                 </div>`;
                 postsSection.innerHTML += postTemplateOwn;
@@ -136,8 +136,21 @@ function handleSignedInUser(firebaseUser) {
             if (ownPostDiv) {
 
                 let editBtn = ownPostDiv.querySelector('.edit-button');
+                let deleteBtn = ownPostDiv.querySelector('.delete-button');
+                //console.log(deleteBtn);
                 //console.log(ownPostDiv, doc.id);
                 // let id = doc.id;
+
+                const deletePost = () => {
+                    db.collection(USERS_COLLECTION).doc(postsId).delete().then(function() {
+                        console.log("Document successfully deleted!");
+                        location.reload();
+                    }).catch(function(error) {
+                        console.error("Error removing document: ", error);
+                    });
+                }
+
+                deleteBtn.addEventListener("click",deletePost);
 
                 const editPost = (event) => {
                     //alert(event);
