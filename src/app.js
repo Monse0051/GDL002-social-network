@@ -1,5 +1,7 @@
+//startup login template
 const contentDiv = document.getElementById("content"); 
-window.onload = pathToWindow('#login');
+
+contentDiv.innerHTML = loginTemplate();
 
 firebase.initializeApp(config);
 
@@ -23,19 +25,19 @@ function codeMessageMapper(errorCode){
   let message = "";
   switch(errorCode){
     case "auth/invalid-email":
-      message = "Correo Electrónico inválido";
+      message = `<p class = "warn">Correo Electrónico inválido</p>`;
       break;
     case "auth/user-not-found":
-      message = "Correo Electrónico no registrado";
+      message = `<p class = "warn">Correo Electrónico no registrado</p>`;
       break;
     case "auth/wrong-password":
-      message ="Contraseña incorrecta";
+      message =`<p class = "warn">contraseña incorrecta</p>`;
       break;
     case "auth/email-already-in-use":
-      message = "Este correo eléctrónico ya está registrado, intenta con otro";
+      message = `<p class = "warn">este Correo Electrónico ya está en uso</p>`;
       break;
     case "auth/weak-password":
-      message = "La contraseña debe tener al menos 6 caracteres";
+      message = `<p class = "warn">la contraseña debe tener al menos 6 caracteres</p>`;
       break;
     default:
 
@@ -61,14 +63,14 @@ function authEvent(email, password, auth, authEvent, errorSection) {
   }
   else if (authEvent === "createuser") {
     promise = auth.createUserWithEmailAndPassword(email, password);
-    //createUser();
+   
   }
 
   promise.then( function(){
     //console.log("DEBUG_MSG auth event");
     errorSection.style.display = "none";
     if (authEvent === "createuser") {
-      createUser(email);
+      //createUser(email);
     }
   }).catch(function (error) {
     errorSection.style.display = "block";
@@ -90,7 +92,7 @@ btnSignUp.addEventListener("click", function(event){
   // logs out the user and refreshes window to #login
   btnLogOut.addEventListener("click", event => {
     firebase.auth().signOut();
-    location.reload();
+    location.reload(true);
   });
 
 
@@ -101,13 +103,12 @@ btnSignUp.addEventListener("click", function(event){
  */
 firebase.auth().onAuthStateChanged( function(firebaseUser) {
   // TODO create functions handleSignedInUser and handleSignedOutUser
-  console.log("DEBUG_MSG: auth state change event");
+  //console.log("DEBUG_MSG: auth state change event");
   
   if (firebaseUser) {
-    console.log(firebaseUser);
+    //console.log(firebaseUser);
     btnLogOut.style.visibility = "visible";
-    pathToWindow('#timeline')
-    handleSignedInUser(firebaseUser);
+        handleSignedInUser(firebaseUser);
   } else {
     console.log("not logged in");
     btnLogOut.style.visibility = "hidden";
@@ -118,15 +119,18 @@ firebase.auth().onAuthStateChanged( function(firebaseUser) {
 const signInGoogleBtn = document.getElementById('sign-in-google');
 // Set GOOGLE as provider
 let provider = new firebase.auth.GoogleAuthProvider();
+//let provider = new firebase.auth.FacebookAuthProvider();
 
 //Get GOOGLE ACCOUNT Authentication FIREBASE DOCUMENTATION
 const googleSignin = () => {
- firebase.auth().signInWithPopup(provider).then(function(result) {
+ firebase.auth().signInWithRedirect(provider).then(function(result) {
  // This gives you a Google Access Token. You can use it to access the Google API.
- var token = result.credential.accessToken;
+ var token = result.credential.accessTokzen;
  // The signed-in user info.
  var user = result.user;
- // ...
+
+ //FIXME what happens if user already exist
+ //createUser(user.email);
 }).catch(function(error) {
  // Handle Errors here.
  var errorCode = error.code;
@@ -135,9 +139,9 @@ const googleSignin = () => {
  var email = error.email;
  // The firebase.auth.AuthCredential type that was used.
  var credential = error.credential;
- // ...
+ console.log("DEBUG_MSG: error code = " + errorCode);
 });
-}
+};
 
 signInGoogleBtn.addEventListener("click", googleSignin );
 
