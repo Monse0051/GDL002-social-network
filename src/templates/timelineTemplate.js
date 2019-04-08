@@ -1,32 +1,35 @@
 function timelineTemplate() {
-    return ` <section class = "timeline-screen">
-    <nav id = "timeline-nav" class= "timeline-nav flex-row">
-        <h1 class="purple">madame{code}</h1>
-        <h3 id="logged-user"></h3>
-        <button id="sign-out-nav">Salir<img src=""></button>
+    return ` <div>
+    <nav id = "timeline-nav" class= "timeline-nav flex-row-nav">
+        <div></div>
+        <h2 class="purple">madame{code}</h2>
+        <h3 id="logged-user" class = "mint"></h3>
+        <button id="sign-out-nav"><img src="assets/logout.png" class ="logout-icon"></button>
+        <div></div>
     </nav>
 
-
-    <article id="create-post" class="create-post">
-        <h2>Crear Publicación:</h2>
-        <input id="input-post" type="text" placeholder="¿Qué quieres compartir con la comunidad?">
+    <section class = "timeline-screen">
+        <h2 class="gray">Crear Publicación:</h2>
+        <article id="create-post" class="create-post">
+        
+        <textarea id="input-post" type="text" placeholder="¿Qué quieres compartir con la comunidad?"></textarea>
         <br>
-        <label>Selecciona visibilidad:</label>
-        <select id = "select-visibility"> 
-                <option value="friends">Sólo Amigos</option>
-                <option value="public">Pública</option>
-        </select>
+        <p>Visible para:</p>
+            <input type="radio" name="public" value="public"> Público
+            <input type="radio" name="friends" value="friends"> Sólo Amigos
         <br>
-        <button id="button-post">Publicar</button>
         <div id="post-error" class="warn"></div>
+        <button id="button-post" class = "all-others-buttons">Publicar</button>
+        
     </article>
 
-    <h2>Publicaciones recientes:</h2>
+    <h2 class="gray">Publicaciones recientes:</h2>
 
     <section id="all-posts">   
     </section>
 
-    </section>`
+    </section>
+    </div>`
     ;
     
 };

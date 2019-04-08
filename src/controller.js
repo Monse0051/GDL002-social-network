@@ -93,13 +93,13 @@ function handleSignedInUser(firebaseUser) {
 
                 let postTemplateOwn = 
                                 `<div id = "own-post-${id}" class = "own-post">
-                                    <p class ="purple">Fecha: ${postsData.date} Hora: ${postsData.time}<br>
-                                    <strong>${postsData.email}</strong> compartió la publicación:
-                                    <br><i>${postsData.text}</i>
-                                    <br><button class="btn-like" id="add-like_${id}">Me gusta</button>
-                                    <div>Likes:<span id= "likes-counter_${id}">${likes}</div>
-                                    <br><button id = "edit-button" class = "edit-button">Editar</button>
-                                    <br><button class = "delete-button" class = "">Eliminar post</button>
+                                    <p class ="purple">El día: ${postsData.date} A las: ${postsData.time}<br>
+                                    <strong class="gray">${postsData.email}</strong> compartiste la publicación:
+                                    <br><i class="gray">${postsData.text}</i>
+                                    <br><button class="btn-like" id="add-like_${id}"><img src = "assets/heart.png"></button>
+                                    <br><span id= "likes-counter_${id}" class = "purple">${likes}
+                                    <br><button id = "edit-button" class = "edit-button all-others-buttons">Editar</button>
+                                    <br><button class = "delete-button all-others-buttons" >Eliminar post</button>
                                     <br>
                                 </div>`;
                 postsSection.innerHTML += postTemplateOwn;
@@ -108,12 +108,14 @@ function handleSignedInUser(firebaseUser) {
            }
 
             else {
-                let postTemplateOthers = `<p>Fecha: ${postsData.date} Hora: ${postsData.time}<br>
-                                <strong>${postsData.email}</strong> compartió la publicación:
-                                <br><i>${postsData.text}</i>
-                                <br><button class="btn-like" id="add-like_${id}">Me gusta</button>
-                                <div>Likes:<span id= "likes-counter_${id}">${likes}</div>
+                let postTemplateOthers = `<div class = "others-post"
+                                <p>El día: ${postsData.date} A las: ${postsData.time}<br>
+                                <strong class="gray">${postsData.email}</strong> compartió la publicación:
+                                <br><i class="gray">${postsData.text}</i>
+                                <br><button class="btn-like" id="add-like_${id}"><img src = "assets/heart.png"></button>
+                                <br><span id= "likes-counter_${id}" class = "purple">${likes}
                                 <br>
+                                </div>
                                 `;
                 postsSection.innerHTML += postTemplateOthers;
             }
@@ -197,8 +199,8 @@ function handleSignedInUser(firebaseUser) {
                 const editPost = (event) => {
                 ownPostDiv.innerHTML += `<div class="edit-post-div">
                                         <input class="edit-post-input"/>
-                                        <br><button class="save-edit-btn">guardar</button>
-                                        <br><button class="cancel-edit-btn">cancelar</button>
+                                        <br><button class="save-edit-btn all-others-buttons">guardar</button>
+                                        <br><button class="cancel-edit-btn all-others-buttons">cancelar</button>
                                         </div>`;
 
 

@@ -75,7 +75,96 @@ h3 {
 	margin-top: 3rem;
 	line-height: 3rem;
 	text-transform: uppercase;
+}
+
+nav h2 {
+	font-size: 2rem;
 }	
+
+nav h3 {
+	font-size: 1.35rem;
+	line-height: 0;
+	margin: .5rem;
+}
+nav button {
+	background-color: transparent;
+	border:none;
+	cursor: pointer;
+}
+
+.timeline-screen h2 {
+	line-height: 2rem;
+	margin-bottom: 1.2rem;
+}
+
+.create-post  {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.create-post textarea {
+	width: 20rem;
+	height: 10rem;
+	margin-bottom: 1rem;
+	font-size: 1rem;
+	font-family: 'Open Sans', sans-serif;
+	border-radius: .5rem;
+	border: 1px solid #ab1795;
+	padding: 1rem;
+}
+.others-post {
+	background-color: #cefffb;
+	border-radius: .5rem;
+	margin: 1rem 30%;
+	font-family: 'Open Sans', sans-serif;
+	padding: 2rem;
+	line-height: 2rem;
+
+}
+
+.own-post {
+	background-color: #f6eaf4;
+	border-radius: .5rem;
+	margin: 1rem 30%;
+	font-family: 'Open Sans', sans-serif;
+	padding: 2rem;
+	line-height: 2rem;
+}
+
+.all-others-buttons {
+	border: none;
+	display: inline-block;
+	margin: .75rem auto;
+	background: #00b2a3;
+	border-radius: 5rem;
+	height: 50px;
+	line-height: 3rem;
+	padding: 0 1em;
+	font-size: .75rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: #fff;
+	cursor: pointer;
+	width: 8rem;
+}
+
+.all-others-buttons:hover {
+	filter: brightness(120%);
+}
+
+
+.btn-like{
+	background-color: transparent;
+	border:none;
+}
+
+.btn-like img {
+	width: 30px;
+}
+
+.btn-like img:hover {
+	opacity: .5;
+	transform: scale(1.25);
+}
 
 p {
 	color: #494949;
@@ -101,11 +190,21 @@ p {
     display: none;
 }
 .login-background {
-    background-image: url("assets/mujer-coder.jpg");
+    background-image: url(assets/mujer-coder.jpg);
     width: 500px;
     height: 100vh;
     background-position: center;
     background-size: cover;
+}
+
+.login-background-mobile{
+	background: url(assets/mujer-coder-mobile.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 180vh;
+	display: none;
 }
 
 .flex-row{
@@ -117,7 +216,17 @@ p {
 	padding: 0;
 }
 
-.flex-column-center{
+.flex-row-nav {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content:space-between;
+	margin: 0;
+	padding: 2rem;
+	width: 100%;
+}
+
+.flex-column-center {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -139,15 +248,22 @@ p {
 }
 
 .login-screen button {
-	margin: .8rem auto;
-	background-color: #00b2a3;
-	padding: .75rem;
-	width: 12rem;
-	color: #ffff;
-	font-size: .9rem;
-	border-radius: .35rem;
+	display: block;
+	margin: .75rem auto;
+	background: #00b2a3;
+	border-radius: 5rem;
+	height: 50px;
+	line-height: 3rem;
+	padding: 0 3rem;
+	font-size: .75rem;
 	text-transform: uppercase;
-
+	font-weight: 600;
+	color: #fff;
+	cursor: pointer;
+	width: 15rem;
+}
+.timeline-screen {
+	margin-top: 5rem;
 }
 
 p .strong {
@@ -179,18 +295,74 @@ color: #ff0000;
 text-transform: uppercase;
 }
 
+.logout-icon {
+	width: 2.25rem;
+}
+
+.logout-icon:hover {
+	 opacity: 0.5;
+}
+
 @media only screen and (max-width: 1200px) {
+
+	.others-post, .own-post {
+		margin: 1rem;
+	}
 
 	.login-background {
 		display: none;
 	}
 
-	.flex-row {
+	.login-background-mobile{
 		display: block;
+		height: 150vh;
 	}
+
+	.flex-row {
+		position: absolute;
+		top: 100px;
+		background-color: #fff;
+		margin: 5%;
+		right: 10%;
+		left: 10%;
+		padding: 3rem;
+		border-radius: 1rem;
+	}
+
+
 
 	h1 {
 		font-size: 2rem;
 	}
+	
+	.flex-row-nav {
+		display: inline-block;
+		padding: 1rem 1rem 0 1rem; 
+	}
+	.flex-row-nav * {
+		margin: .5rem;
+	}
 
+	.flex-row-nav h3 {
+		line-height: 2rem;
+	}
+
+	.timeline-screen {
+		margin-top: 1rem;
+	}
+
+}
+
+
+@media only screen and (max-width: 600px) {
+
+	.flex-row {
+		position: initial;
+		background-color: #fff;
+		margin: 5%;
+	}
+
+	.login-background-mobile{
+		height: 100vh;
+	}
 }
