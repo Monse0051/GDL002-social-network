@@ -10,10 +10,10 @@ function loginTemplate() {
         <input id = "txtEmail" type="email" placeholder="EMAIL"> 
         <input id = "txtPassword" type="password" placeholder= "CONTRASEÑA">
         <article id = "error" class = "warn"></article>
-        <div>
+        <div class = "flex-buttons">
         <button id = btnLogin class="btn-btn-action">Iniciar sesión</button>
         <button id = btnSignUp class="btn-btn-secondary">Crear Cuenta</button>
-        <button id= "sign-in-google">Entrar con google</button>
+        <button id= "sign-in-google"><image src = "assets/google-logo.png" class = "google-logo"></button>
         </div>
       </section>
       <div class = "padd"></div>

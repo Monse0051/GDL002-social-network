@@ -59,17 +59,17 @@ border-spacing: 0;
 h1 {
 	font-family: 'Noto Serif TC', serif;
 	font-weight: 400;
-	font-size: 3.5rem;
+	font-size: 2.5rem;
 	line-height: 5rem;
 }
 
 h2 {
 	font-family: 'Noto Serif TC', serif;
-	font-size: 1.35rem;
+	font-size: 1.15rem;
 }
 
 h3 {
-	font-size: 1.25rem;
+	font-size: 1.05rem;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 	margin-top: 3rem;
@@ -261,7 +261,18 @@ p {
 	font-weight: 600;
 	color: #fff;
 	cursor: pointer;
-	width: 12rem;
+	width: 9rem;
+}
+
+.google-logo {
+	width: 1.75rem;
+	background-color: #ffff;
+	padding: .15rem;
+	border-radius: 50%;
+}
+
+#sign-in-google {
+	padding-top: .5rem;
 }
 
 .login-screen button:hover {
@@ -272,7 +283,7 @@ p {
 }
 
 .main-logo {
-	width: 8rem;
+	width: 6rem;
 	margin: 1rem;
 }
 
@@ -312,8 +323,18 @@ text-transform: uppercase;
 .logout-icon:hover {
 	 opacity: 0.5;
 }
+.flex-buttons {
+		display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content:space-between;
+}
 
 @media only screen and (max-width: 1200px) {
+
+	.flex-buttons {
+		display: block;
+	}
 
 	.others-post, .own-post {
 		margin: 1rem;
