@@ -1,18 +1,96 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+body {
+line-height: 1;
+}
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+@import url('<https://fonts.googleapis.com/css?family=Noto+Serif+TC:300,400,600,700|Open+Sans:300,400,600,700" rel="stylesheet">');
+
 /*BOX-SIZING MODEL TO BORDER*/
 *, *:before, *:after {
 	-webkit-box-sizing: border-box; 
 	-moz-box-sizing: border-box; 
 	box-sizing: border-box;
 	text-align: center;
-	font-family: Helvetica, Arial, sans-serif;
 }
 
-.flex-row {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content:space-between;
-	padding: 1rem 3rem;
+h1 {
+	font-family: 'Noto Serif TC', serif;
+	font-weight: 400;
+	font-size: 3.5rem;
+	line-height: 5rem;
+}
+
+h2 {
+	font-family: 'Noto Serif TC', serif;
+	font-size: 1.35rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	margin-top: 3rem;
+	line-height: 3rem;
+	text-transform: uppercase;
+}	
+
+p {
+	color: #494949;
+	font-family: 'Open Sans', sans-serif;
+}
+.purple {
+	color: #ab1795;
+}
+
+.gray {
+	color: #494949;
+}
+
+.mint {
+	color: #00b2a3;
 }
 
 #btnLogOut{
@@ -22,16 +100,54 @@
 #error{
     display: none;
 }
-
-.login-screen {
-	text-align: center;
-	max-width: 10rem;
-	padding: 2rem;
-	margin: 2rem auto;
+.login-background {
+    background-image: url("assets/mujer-coder.jpg");
+    width: 500px;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
 }
 
-.login-screen input, .login-screen button{
-	margin: .5rem auto;
+.flex-row{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content:space-between;
+	margin: 0;
+	padding: 0;
+}
+
+.flex-column-center{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content:center;
+}
+.flex-column-center * {
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.login-screen input{
+	margin: 1rem auto 2rem auto;
+	outline: 0;
+	border-width: 0 0 .1rem;
+	border-color: #ab1795;
+	padding: .25rem;
+	font-size: 1.15rem;
+}
+
+.login-screen button {
+	margin: .8rem auto;
+	background-color: #00b2a3;
+	padding: .75rem;
+	width: 12rem;
+	color: #ffff;
+	font-size: .9rem;
+	border-radius: .35rem;
+	text-transform: uppercase;
+
 }
 
 p .strong {
@@ -40,10 +156,6 @@ p .strong {
 
 .red-text {
 	color:	#ff0000;
-}
-
-.purple {
-	color: #ab1795;
 }
 
 .purple-btn {
@@ -60,4 +172,25 @@ p .strong {
 }
 .hide {
 	display: none;
+}
+
+.warn {
+color: #ff0000;
+text-transform: uppercase;
+}
+
+@media only screen and (max-width: 1200px) {
+
+	.login-background {
+		display: none;
+	}
+
+	.flex-row {
+		display: block;
+	}
+
+	h1 {
+		font-size: 2rem;
+	}
+
 }

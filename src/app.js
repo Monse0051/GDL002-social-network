@@ -25,19 +25,19 @@ function codeMessageMapper(errorCode){
   let message = "";
   switch(errorCode){
     case "auth/invalid-email":
-      message = "Correo Electrónico inválido";
+      message = `<p class = "warn">Correo Electrónico inválido</p>`;
       break;
     case "auth/user-not-found":
-      message = "Correo Electrónico no registrado";
+      message = `<p class = "warn">Correo Electrónico no registrado</p>`;
       break;
     case "auth/wrong-password":
-      message ="Contraseña incorrecta";
+      message =`<p class = "warn">contraseña incorrecta</p>`;
       break;
     case "auth/email-already-in-use":
-      message = "Este correo eléctrónico ya está registrado, intenta con otro";
+      message = `<p class = "warn">este Correo Electrónico ya está en uso</p>`;
       break;
     case "auth/weak-password":
-      message = "La contraseña debe tener al menos 6 caracteres";
+      message = `<p class = "warn">la contraseña debe tener al menos 6 caracteres</p>`;
       break;
     default:
 

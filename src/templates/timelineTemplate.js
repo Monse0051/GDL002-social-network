@@ -1,7 +1,7 @@
 function timelineTemplate() {
     return ` <section class = "timeline-screen">
     <nav id = "timeline-nav" class= "timeline-nav flex-row">
-        <h1>madame{code}</h1>
+        <h1 class="purple">madame{code}</h1>
         <h3 id="logged-user"></h3>
         <button id="sign-out-nav">Salir<img src=""></button>
     </nav>
@@ -18,7 +18,7 @@ function timelineTemplate() {
         </select>
         <br>
         <button id="button-post">Publicar</button>
-        <div id="post-error" class="red-text"></div>
+        <div id="post-error" class="warn"></div>
     </article>
 
     <h2>Publicaciones recientes:</h2>
