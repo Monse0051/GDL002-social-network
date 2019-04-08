@@ -3,6 +3,7 @@ function loginTemplate() {
     <div class = "flex-row">
       <div class = "login-background"></div>
       <section class = "login-screen flex-column-center">
+        <img src = "assets/logomadame.png" class= "main-logo">
         <h1 class="purple">madame{code}</h1>
         <h2 class = "gray">Conectando a aprendices de FRONTEND</h2>
         <h3 class = "mint">Inicia Sesión o Crea Tu Cuenta:</h3>

@@ -73,7 +73,7 @@ h3 {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 	margin-top: 3rem;
-	line-height: 3rem;
+	line-height: 1.5rem;
 	text-transform: uppercase;
 }
 
@@ -248,22 +248,32 @@ p {
 }
 
 .login-screen button {
-	display: block;
-	margin: .75rem auto;
+	display: inline-block;
+	border:none;
+	margin: .75rem;
 	background: #00b2a3;
 	border-radius: 5rem;
 	height: 50px;
 	line-height: 3rem;
-	padding: 0 3rem;
+	padding: 0 .5em;
 	font-size: .75rem;
 	text-transform: uppercase;
 	font-weight: 600;
 	color: #fff;
 	cursor: pointer;
-	width: 15rem;
+	width: 12rem;
+}
+
+.login-screen button:hover {
+	filter: brightness(120%);	
 }
 .timeline-screen {
 	margin-top: 5rem;
+}
+
+.main-logo {
+	width: 8rem;
+	margin: 1rem;
 }
 
 p .strong {
