@@ -147,32 +147,7 @@ function handleSignedInUser(firebaseUser) {
        });  
         //// end of SHOW POST FROM ALL USERS
         
-        //// add LIKE BUTTON
-        let buttonsLike = document.getElementsByClassName("btn-like");
-
-        for (let index = 0; index < buttonsLike.length; index++) {
-            const button = buttonsLike[index];
-            let id = button.id.slice("add-like_".length);
-
-            button.addEventListener("click", function () {
-                let postDocRef = db.collection(USERS_COLLECTION).doc(id);
-
-                db.runTransaction(function (transaction) {
-                    return transaction.get(postDocRef).then(function (post){
-                        //increasing likes by 1
-                        let likesCount = post.data().likes + 1 - 1;
-                        transaction.update(postDocRef, {likes: likesCount});
-                        return likesCount;
-                    });
-                }).then(function (likesCount) {
-                    document.getElementById(`likes-counter_${id}`).innerHTML = likesCount;
-                });
-
-            }); 
-        }
-
-
-        ////// Edit POSTS
+         ////// Edit POSTS
             querySnapshot.forEach(function(doc) {
             let postsData = doc.data();
             let id = doc.id;
